@@ -46,3 +46,15 @@ echo -e "BUILD_NUMBER\t${BUILD_NUMBER}"
 echo -e "JOB_ENV\t${JOB_ENV}"
 echo -e "JOB_BRANCH\t${JOB_BRANCH}"
 echo -e "BUILD_TIME\t${BUILD_TIME}"
+
+#do insert
+aws dynamodb put-item \
+	--table-name='jenkins_info' \
+	--item "{ \
+        	\"job_name\": {\"S\": \"$JOB_NAME\"},
+		\"job_env\": {\"S\": \"$JOB_ENV\"},
+		\"build_number\": {\"S\": \"$JOB_ENV\"},
+		\"job_branch\": {\"S\": \"$JOB_BRANCH\"},
+		\"build_time\": {\"S\": \"$BUILD_TIME\"} }" \
+	--return-consumed-capacity TOTAL
+	
