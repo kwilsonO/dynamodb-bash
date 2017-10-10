@@ -56,5 +56,6 @@ aws dynamodb put-item \
 		\"build_number\": {\"S\": \"$BUILD_NUMBER\"},
 		\"job_branch\": {\"S\": \"$JOB_BRANCH\"},
 		\"build_time\": {\"S\": \"$BUILD_TIME\"} }" \
-	--return-consumed-capacity TOTAL
+	--return-consumed-capacity TOTAL \
+	--profile dynamo
 	
